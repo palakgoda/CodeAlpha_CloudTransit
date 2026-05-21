@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
-import { Ticket, ScanLine, User, MapPin, CheckCircle, AlertTriangle } from 'lucide-react';
+import { Ticket, ScanLine, User, MapPin, CheckCircle, AlertTriangle, Radio } from 'lucide-react';
 
 function App() {
   const [activeTab, setActiveTab] = useState('book'); // 'book' or 'verify'
@@ -141,6 +141,13 @@ function App() {
           >
             <ScanLine className="w-4 h-4 mr-2" />
             Ticket Checker
+          </button>
+          <button
+            onClick={() => setActiveTab('control')}
+            className={`flex-1 py-3 px-4 text-sm font-semibold rounded-lg flex items-center justify-center transition-all ${activeTab === 'control' ? 'bg-white text-indigo-700 shadow-sm' : 'text-slate-600 hover:text-slate-800'}`}
+          >
+            <Radio className="w-4 h-4 mr-2" />
+            Control Tower
           </button>
         </div>
 
@@ -327,9 +334,14 @@ function App() {
                   </div>
                 )}
               </div>
-              
+            </div>
+          )}
+
+          {/* Control Tower */}
+          {activeTab === 'control' && (
+            <div className="animate-in fade-in slide-in-from-bottom-2 duration-300 max-w-2xl mx-auto">
               {/* Transit Control Dashboard */}
-              <div className="mt-12 bg-white border border-slate-200 rounded-xl shadow-sm p-6 max-w-2xl mx-auto">
+              <div className="bg-white border border-slate-200 rounded-xl shadow-sm p-6 max-w-2xl mx-auto">
                 <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center">
                   <AlertTriangle className="w-5 h-5 mr-2 text-indigo-600" />
                   Transit Control Dashboard
